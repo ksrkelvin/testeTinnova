@@ -1,4 +1,4 @@
-package com.exercicio5apicadastroveiculos.api.model;
+package com.exercicio5apicadastroveiculos.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class QtyDecade{
     public Integer decada;
-    public Integer quantidade;
+    public Long quantidade;
 
-    public QtyDecade(Integer key, int i) {
+    public QtyDecade(Integer key, long i) {
         decada=key;
         quantidade=i;
     }

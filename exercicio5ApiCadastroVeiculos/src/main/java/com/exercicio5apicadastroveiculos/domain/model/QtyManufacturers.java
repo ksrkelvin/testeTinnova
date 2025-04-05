@@ -1,4 +1,4 @@
-package com.exercicio5apicadastroveiculos.api.model;
+package com.exercicio5apicadastroveiculos.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class QtyManufacturers {
     public String fabricante;
-    public Integer quantidade;
+    public Long quantidade;
 
-    public QtyManufacturers(String key, int i) {
+    public QtyManufacturers(String key, long i) {
         fabricante = key;
         quantidade = i;
     }

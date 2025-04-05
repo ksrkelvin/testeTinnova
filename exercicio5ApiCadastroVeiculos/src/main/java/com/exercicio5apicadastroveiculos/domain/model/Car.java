@@ -24,6 +24,15 @@ public class Car {
     private LocalDateTime created;
     private LocalDateTime updated;
 
+    public Car(String veiculo, String marca, Integer ano, String cor, boolean vendido) {
+        this.veiculo = veiculo;
+        this.marca = marca;
+        this.ano = ano;
+        this.cor = cor;
+        this.vendido = vendido;
+
+    }
+
     @PrePersist
     protected void onCreate() {
         this.created = LocalDateTime.now();
