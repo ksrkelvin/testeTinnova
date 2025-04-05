@@ -12,6 +12,7 @@ mvn compile
 # Rodar a classe principal exercicio 1 
 mvn exec:java -Dexec.mainClass="com.exercicio1TotalEleitores.Main"
 
+
 #Exercicio 2 - Totais e Bubble Sort
 - Projeto Rodando em java 17
 - Maven
@@ -23,13 +24,25 @@ mvn compile
 mvn exec:java -Dexec.mainClass="com.exercicio2BubbleSort.Main"
 
 
-#Exercicio 1 - Totais e Fatorial
+#Exercicio 3 - Fatorial
 - Projeto Rodando em java 17
 - Maven
 #Entre na pasta do projeto 
 cd exercicio3Fatorial/
 # Compilar o projeto
 mvn compile
-# Rodar a classe principal exercicio 2
+# Rodar a classe principal exercicio 3
 mvn exec:java -Dexec.mainClass="com.exercicio3Fatorial.Main"
+
+
+#Exercicio 4 - Multiplos de 3 e 5
+- Projeto Rodando em java 17
+- Maven
+#Entre na pasta do projeto 
+cd exercicio3Fatorial/
+# Compilar o projeto
+mvn compile
+# Rodar a classe principal exercicio 4
+mvn exec:java -Dexec.mainClass="com.exercicio4multiplos3e5.Main" -Dexec.args="10"
+
 
