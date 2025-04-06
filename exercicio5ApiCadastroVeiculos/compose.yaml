@@ -10,14 +10,14 @@ services:
       - "8080:8080"
     depends_on:
       mysql:
-        condition: service_healthy  # Espera o MySQL estar pronto
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testeTinnova?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 123456
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     volumes:
-      - ~/.m2:/root/.m2  # Cache do Maven
+      - ~/.m2:/root/.m2
 
   mysql:
     image: mysql:8.0
