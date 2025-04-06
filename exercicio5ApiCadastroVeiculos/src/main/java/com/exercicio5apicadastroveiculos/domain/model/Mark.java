@@ -12,7 +12,7 @@ public enum Mark {
     NISSAN,
     RENAULT;
 
-    public static boolean Contains(String value){
+    public static boolean contains(String value){
         for (Mark mark : values()) {
             if (mark.name().equalsIgnoreCase(value)) {
                 return true;

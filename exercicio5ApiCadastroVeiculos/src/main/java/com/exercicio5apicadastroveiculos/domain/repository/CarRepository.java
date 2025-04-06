@@ -8,21 +8,21 @@ import java.util.List;
 
 public interface CarRepository {
 
-    List<Car> Listar();
+    List<Car> listar();
 
-    List<Car> FilterList(String marca, Integer ano, String cor, Boolean vendido);
+    List<Car> filterList(String marca, Integer ano, String cor, Boolean vendido);
 
-    Car BuscarPorId(Long id);
+    Car buscarPorId(Long id);
 
-    Car Salvar(Car car);
+    Car salvar(Car car);
 
-    void Deletar(Car car);
+    void deletar(Car car);
 
-    long CountVendidos();
+    long countVendidos();
 
-    List<Car> ListarUltimosCadastrados();
+    List<Car> listarUltimosCadastrados();
 
-    List<QtyManufacturers> GroupByMarca();
+    List<QtyManufacturers> groupByMarca();
 
-    List<QtyDecade> GroupByAno();
+    List<QtyDecade> groupByAno();
 }

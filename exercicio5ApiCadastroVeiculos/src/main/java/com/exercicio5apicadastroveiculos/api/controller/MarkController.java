@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/marcas")
 public class MarkController {
     @GetMapping
-    public Mark[] Listar(){
+    public Mark[] listar(){
         return Mark.values();
     }
 }

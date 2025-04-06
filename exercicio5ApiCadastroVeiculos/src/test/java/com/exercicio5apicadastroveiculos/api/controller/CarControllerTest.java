@@ -37,7 +37,7 @@ class CarControllerTest {
         Car car = new Car("Civic", "Honda", 1990, "branco", false);
         List<Car> cars = new ArrayList<>();
         cars.add(car);
-        Mockito.when(carRepository.FilterList(null, null, null, null)).thenReturn(cars);
+        Mockito.when(carRepository.filterList(null, null, null, null)).thenReturn(cars);
 
         mockMvc.perform(get("/veiculos"))
                 .andExpect(status().isOk())
@@ -49,7 +49,7 @@ class CarControllerTest {
     @Test
     void buscar() throws Exception {
         Car car = new Car("Civic", "Honda", 1990, "branco", false);
-        Mockito.when(carRepository.BuscarPorId(1L)).thenReturn(car);
+        Mockito.when(carRepository.buscarPorId(1L)).thenReturn(car);
 
         mockMvc.perform(get("/veiculos/1"))
                 .andExpect(status().isOk())
@@ -62,7 +62,7 @@ class CarControllerTest {
         Car carSalvo = new Car("Civic", "Honda", 1990, "branco", false);
         carSalvo.setId(1L); // <-- Simulando ID retornado ao salvar
 
-        Mockito.when(carRepository.Salvar(any())).thenReturn(carSalvo);
+        Mockito.when(carRepository.salvar(any())).thenReturn(carSalvo);
 
         mockMvc.perform(post("/veiculos")
                         .contentType("application/json")
@@ -82,11 +82,11 @@ class CarControllerTest {
     @Test
     void deletar() throws Exception {
         Car currentCar = new Car("Civic", "Honda", 1990, "branco", false);
-        Mockito.when(carRepository.BuscarPorId(1L)).thenReturn(currentCar);
+        Mockito.when(carRepository.buscarPorId(1L)).thenReturn(currentCar);
 
         mockMvc.perform(delete("/veiculos/1"))
                 .andExpect(status().isNoContent());
 
-        verify(carRepository).Deletar(currentCar);
+        verify(carRepository).deletar(currentCar);
     }
 }

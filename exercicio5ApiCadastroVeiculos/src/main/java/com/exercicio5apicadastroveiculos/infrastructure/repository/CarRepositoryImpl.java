@@ -23,12 +23,12 @@ public class CarRepositoryImpl implements CarRepository {
     private EntityManager manager;
 
     @Override
-    public List<Car> Listar() {
+    public List<Car> listar() {
         return manager.createQuery("from Car", Car.class).getResultList();
     }
 
     @Override
-    public List<Car> FilterList(String marca, Integer ano, String cor, Boolean vendido) {
+    public List<Car> filterList(String marca, Integer ano, String cor, Boolean vendido) {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
         CriteriaQuery<Car> cq = cb.createQuery(Car.class);
         Root<Car> root = cq.from(Car.class);
@@ -54,12 +54,12 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public Car BuscarPorId(Long id) {
+    public Car buscarPorId(Long id) {
         return manager.find(Car.class, id);
     }
 
     @Override
-    public long CountVendidos() {
+    public long countVendidos() {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class); // Corrigido aqui
         Root<Car> root = cq.from(Car.class);
@@ -70,7 +70,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public List<Car> ListarUltimosCadastrados() {
+    public List<Car> listarUltimosCadastrados() {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
         CriteriaQuery<Car> cq = cb.createQuery(Car.class);
         Root<Car> root = cq.from(Car.class);
@@ -89,7 +89,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public List<QtyManufacturers> GroupByMarca() {
+    public List<QtyManufacturers> groupByMarca() {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<Car> root = cq.from(Car.class);
@@ -118,7 +118,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public List<QtyDecade> GroupByAno() {
+    public List<QtyDecade> groupByAno() {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<Car>root = cq.from(Car.class);
@@ -150,14 +150,14 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Transactional
     @Override
-    public Car Salvar(Car car) {
+    public Car salvar(Car car) {
         return manager.merge(car);
     }
 
     @Transactional
     @Override
-    public void Deletar(Car car) {
-        car = BuscarPorId(car.getId());
+    public void deletar(Car car) {
+        car = buscarPorId(car.getId());
         manager.remove(car);
     }
 }
