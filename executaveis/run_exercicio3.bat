@@ -1,6 +1,6 @@
 @echo off
 REM Caminho da pasta do projeto
-set "PROJECT_DIR=exercicio3Fatorial"
+set "PROJECT_DIR=../exercicio3Fatorial"
 
 REM Nome completo da classe principal
 set "MAIN_CLASS=com.exercicio3Fatorial.Main"

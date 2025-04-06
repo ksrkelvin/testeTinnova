@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Caminho da pasta do projeto
-PROJECT_DIR="exercicio5ApiCadastroVeiculos"
+PROJECT_DIR="../exercicio5ApiCadastroVeiculos"
 
 # Entra na pasta do projeto
 cd "$PROJECT_DIR" || { echo "Pasta $PROJECT_DIR não encontrada."; exit 1; }

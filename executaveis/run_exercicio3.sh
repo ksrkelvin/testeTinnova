@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Caminho da pasta do projeto
-PROJECT_DIR="exercicio3Fatorial"
+PROJECT_DIR="../exercicio3Fatorial"
 
 # Nome completo da classe principal
 MAIN_CLASS="com.exercicio3Fatorial.Main"

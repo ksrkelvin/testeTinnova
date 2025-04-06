@@ -1,6 +1,6 @@
 @echo off
 REM Caminho da pasta do projeto
-set "PROJECT_DIR=exercicio5ApiCadastroVeiculos"
+set "PROJECT_DIR=../exercicio5ApiCadastroVeiculos"
 
 REM Entra na pasta do projeto
 cd /d "%PROJECT_DIR%"

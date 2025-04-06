@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Caminho da pasta do projeto
-PROJECT_DIR="exercicio4multiplos3e5"
+PROJECT_DIR="../exercicio4multiplos3e5"
 
 # Classe principal
 MAIN_CLASS="com.exercicio4multiplos3e5.Main"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Caminho da pasta do projeto
-PROJECT_DIR="exercicio2BubbleSort"
+PROJECT_DIR="../exercicio2BubbleSort"
 
 # Nome completo da classe principal
 MAIN_CLASS="com.exercicio2BubbleSort.Main"

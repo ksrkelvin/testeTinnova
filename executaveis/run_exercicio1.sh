@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Caminho da pasta do projeto
-PROJECT_DIR="exercicio1TotalEleitores"
+PROJECT_DIR="../exercicio1TotalEleitores"
 
 # Nome completo da classe principal
 MAIN_CLASS="com.exercicio1TotalEleitores.Main"

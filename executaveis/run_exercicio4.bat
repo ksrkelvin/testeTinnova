@@ -1,6 +1,6 @@
 @echo off
 REM Caminho da pasta do projeto
-set "PROJECT_DIR=exercicio4multiplos3e5"
+set "PROJECT_DIR=../exercicio4multiplos3e5"
 
 REM Classe principal
 set "MAIN_CLASS=com.exercicio4multiplos3e5.Main"

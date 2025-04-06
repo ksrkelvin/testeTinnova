@@ -1,6 +1,6 @@
 @echo off
 REM Caminho da pasta do projeto
-set "PROJECT_DIR=exercicio2BubbleSort"
+set "PROJECT_DIR=../exercicio2BubbleSort"
 
 REM Nome completo da classe principal
 set "MAIN_CLASS=com.exercicio2BubbleSort.Main"
