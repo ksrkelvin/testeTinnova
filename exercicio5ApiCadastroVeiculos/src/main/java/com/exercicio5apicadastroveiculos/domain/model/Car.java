@@ -32,6 +32,7 @@ public class Car {
         this.vendido = vendido;
 
     }
+    public Car(){}
 
     @PrePersist
     protected void onCreate() {
