@@ -1,6 +1,6 @@
-package com.exercicio5apicadastroveiculos.domain.model;
+package com.exercicio5apicadastroveiculos.entity;
 
-public enum Mark {
+public enum Brand {
     TOYOTA,
     HONDA,
     FORD,
@@ -13,8 +13,8 @@ public enum Mark {
     RENAULT;
 
     public static boolean contains(String value){
-        for (Mark mark : values()) {
-            if (mark.name().equalsIgnoreCase(value)) {
+        for (Brand brand : values()) {
+            if (brand.name().equalsIgnoreCase(value)) {
                 return true;
             }
         }

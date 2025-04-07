@@ -1,4 +1,4 @@
-package com.exercicio5apicadastroveiculos.domain.model;
+package com.exercicio5apicadastroveiculos.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,30 +9,30 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Car {
+public class VehicleEntity {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String veiculo;
-    private String marca;
-    private Integer ano;
-    private String cor;
-    private boolean vendido;
+    private String vehicle;
+    private String brand;
+    private Integer year;
+    private String color;
+    private boolean sold;
 
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    public Car(String veiculo, String marca, Integer ano, String cor, boolean vendido) {
-        this.veiculo = veiculo;
-        this.marca = marca;
-        this.ano = ano;
-        this.cor = cor;
-        this.vendido = vendido;
+    public VehicleEntity(String vehicle, String brand, Integer year, String color, boolean sold) {
+        this.vehicle = vehicle;
+        this.brand = brand;
+        this.year = year;
+        this.color = color;
+        this.sold = sold;
 
     }
-    public Car(){}
+    public VehicleEntity(){}
 
     @PrePersist
     protected void onCreate() {

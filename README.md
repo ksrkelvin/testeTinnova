@@ -49,7 +49,7 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 
 ```json
 {
-  "veiculo": "Corola",
+  "veiculo": "Corolla",
   "marca": "Toyota",
   "ano": 2021,
   "cor": "vermelho",
@@ -62,7 +62,7 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 ```json
 {
   "id": 1,
-  "veiculo": "Corola",
+  "veiculo": "Corolla",
   "marca": "TOYOTA",
   "ano": 2021,
   "cor": "vermelho",
@@ -121,6 +121,7 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 - `marca`
 - `cor`
 - `ano`
+- `vendido`
 
 **Response:**
 

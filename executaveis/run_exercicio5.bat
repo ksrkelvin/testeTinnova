@@ -10,7 +10,7 @@ if errorlevel 1 (
 )
 
 REM Verifica se o compose.yml existe
-if not exist "compose.yaml" (
+if not exist "docker-compose.yaml" (
     echo Arquivo docker-compose.yml não encontrado na pasta %PROJECT_DIR%.
     exit /b 1
 )

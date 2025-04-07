@@ -7,7 +7,7 @@ PROJECT_DIR="../exercicio5ApiCadastroVeiculos"
 cd "$PROJECT_DIR" || { echo "Pasta $PROJECT_DIR não encontrada."; exit 1; }
 
 # Verifica se o compose.yml existe
-if [ ! -f "compose.yaml" ]; then
+if [ ! -f "docker-compose.yaml" ]; then
   echo "Arquivo compose.yml não encontrado na pasta $PROJECT_DIR."
   exit 1
 fi
