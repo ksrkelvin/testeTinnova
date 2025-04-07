@@ -2,6 +2,7 @@ package com.exercicio5apicadastroveiculos.repository;
 
 import com.exercicio5apicadastroveiculos.dto.QtyDecadeDTO;
 import com.exercicio5apicadastroveiculos.dto.QtyManufacturersDTO;
+import com.exercicio5apicadastroveiculos.dto.VehicleDTO;
 import com.exercicio5apicadastroveiculos.entity.VehicleEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -34,10 +35,10 @@ public class VehicleCriteriaRepository {
         return manager.createQuery(cq).getSingleResult();
     }
 
-    public List<VehicleEntity> listLastCreated() {
+    public List<VehicleDTO> listLastCreated() {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
-        CriteriaQuery<VehicleEntity> cq = cb.createQuery(VehicleEntity.class);
-        Root<VehicleEntity> root = cq.from(VehicleEntity.class);
+        CriteriaQuery<VehicleDTO> cq = cb.createQuery(VehicleDTO.class);
+        Root<VehicleDTO> root = cq.from(VehicleDTO.class);
 
         List<Predicate> filters = new ArrayList<>();
 

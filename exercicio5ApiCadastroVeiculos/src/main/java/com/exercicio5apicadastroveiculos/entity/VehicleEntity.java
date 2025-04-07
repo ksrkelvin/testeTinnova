@@ -24,14 +24,6 @@ public class VehicleEntity {
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    public VehicleEntity(String vehicle, String brand, Integer year, String color, boolean sold) {
-        this.vehicle = vehicle;
-        this.brand = brand;
-        this.year = year;
-        this.color = color;
-        this.sold = sold;
-
-    }
     public VehicleEntity(){}
 
     @PrePersist

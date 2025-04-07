@@ -9,6 +9,7 @@ import com.exercicio5apicadastroveiculos.service.FindByIdCarsService;
 import com.exercicio5apicadastroveiculos.service.InfoCarsService;
 import com.exercicio5apicadastroveiculos.service.ListCarsService;
 import com.exercicio5apicadastroveiculos.service.SaveCarsService;
+import com.exercicio5apicadastroveiculos.service.UpdateItemCarsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class VehicleControllerTest {
     private FindByIdCarsService findByIdCarService;
     private ListCarsService listCarsService;
     private InfoCarsService infoCarsService;
+    private UpdateItemCarsService updateItemCarsService;
     private VehicleController controller;
 
     @BeforeEach
@@ -35,13 +37,15 @@ public class VehicleControllerTest {
         findByIdCarService = mock(FindByIdCarsService.class);
         listCarsService = mock(ListCarsService.class);
         infoCarsService = mock(InfoCarsService.class);
+        updateItemCarsService = mock(UpdateItemCarsService.class);
 
         controller = new VehicleController(
                 saveCarService,
                 deleteCarService,
                 findByIdCarService,
                 listCarsService,
-                infoCarsService
+                infoCarsService,
+                updateItemCarsService
         );
     }
 
@@ -51,13 +55,13 @@ public class VehicleControllerTest {
         VehicleDTO saved = new VehicleDTO();
         saved.setId(1L);
 
-        when(saveCarService.execute(input)).thenReturn(saved);
+        when(saveCarService.execute(null, input)).thenReturn(saved);
 
         ResponseEntity<VehicleDTO> response = controller.create(input);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(saved, response.getBody());
-        verify(saveCarService).execute(input);
+        verify(saveCarService).execute(null, input);
     }
 
     @Test

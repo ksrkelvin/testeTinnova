@@ -2,11 +2,13 @@ package com.exercicio5apicadastroveiculos.dto;
 
 import com.exercicio5apicadastroveiculos.entity.VehicleEntity;
 import com.exercicio5apicadastroveiculos.validation.ValidateBrand;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Data
 public class VehicleDTO {
@@ -14,37 +16,46 @@ public class VehicleDTO {
     @Id
     private Long id;
 
-    @NotBlank(message = "{vehicle.brand.required}")
-    @ValidateBrand
-    private String brand;
-
     @NotBlank(message = "{vehicle.vehicle.required}")
+    @JsonProperty("veiculo")
     private String vehicle;
 
+    @NotBlank(message = "{vehicle.brand.required}")
+    @ValidateBrand
+    @JsonProperty("marca")
+    private String brand;
+
+
     @NotBlank(message = "{vehicle.color.required}")
+    @JsonProperty("cor")
     private String color;
 
+    @JsonProperty("ano")
     @NotNull(message = "{vehicle.year.required}")
     private Integer year;
 
+    @NotNull(message = "{vehicle.year.required}")
+    @JsonProperty("vendido")
     private boolean sold;
+
+    @JsonProperty("data_cadastro")
+    private LocalDateTime created;
+
+    @JsonProperty("data_atualizacao")
+    private LocalDateTime updated;
 
     public VehicleDTO() {}
 
     public VehicleDTO(VehicleEntity entity) {
         this.id = entity.getId();
-        this.brand = entity.getBrand();
-        this.color = entity.getColor();
-        this.year = entity.getYear();
-        this.sold = entity.isSold();
-    }
+        setVehicle(entity.getVehicle());
+        setYear(entity.getYear());
+        setSold(entity.isSold());
+        setBrand(entity.getBrand().toUpperCase());
+        setColor(entity.getColor().toUpperCase());
+        setCreated(entity.getCreated());
+        setUpdated(entity.getUpdated());
 
-
-    public void setBrand(String brand) {
-        this.brand = brand != null ? brand.toUpperCase() : null;
-    }
-    public void setColor(String brand) {
-        this.color = brand != null ? brand.toUpperCase() : null;
     }
 
 }
