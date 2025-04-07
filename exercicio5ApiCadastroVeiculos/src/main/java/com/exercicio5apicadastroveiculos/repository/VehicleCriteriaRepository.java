@@ -30,15 +30,16 @@ public class VehicleCriteriaRepository {
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<VehicleEntity> root = cq.from(VehicleEntity.class);
 
-        cq.select(cb.count(root)).where(cb.isTrue(root.get("vendido")));
+        cq.select(cb.count(root)).where(cb.isTrue(root.get("sold")));
 
         return manager.createQuery(cq).getSingleResult();
     }
 
+
     public List<VehicleDTO> listLastCreated() {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
-        CriteriaQuery<VehicleDTO> cq = cb.createQuery(VehicleDTO.class);
-        Root<VehicleDTO> root = cq.from(VehicleDTO.class);
+        CriteriaQuery<VehicleEntity> cq = cb.createQuery(VehicleEntity.class);
+        Root<VehicleEntity> root = cq.from(VehicleEntity.class);
 
         List<Predicate> filters = new ArrayList<>();
 
@@ -49,7 +50,11 @@ public class VehicleCriteriaRepository {
         cq.where(filters.toArray(new Predicate[0]));
         cq.orderBy(cb.desc(root.get("created")));
 
-        return manager.createQuery(cq).getResultList();
+        List<VehicleEntity> result = manager.createQuery(cq).getResultList();
+
+        return result.stream()
+                .map(VehicleDTO::new)
+                .collect(Collectors.toList());
 
     }
 
@@ -58,10 +63,10 @@ public class VehicleCriteriaRepository {
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<VehicleEntity> root = cq.from(VehicleEntity.class);
 
-        Path<String> filter = root.get("marca");
+        Path<String> filter = root.get("brand");
 
         cq.multiselect(
-                filter.alias("marca"),
+                filter.alias("brand"),
                 cb.count(root).alias("qty")
         ).where(
                 cb.and(
@@ -74,12 +79,12 @@ public class VehicleCriteriaRepository {
 
         return data.stream().map(
                 c -> new QtyManufacturersDTO(
-                        c.get("marca", String.class),
+                        c.get("brand", String.class),
                         c.get("qty", Long.class).intValue()
                 )
         ).collect(Collectors.toList());
-
     }
+
 
     public List<QtyDecadeDTO> groupByYear() {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
@@ -87,16 +92,16 @@ public class VehicleCriteriaRepository {
         Root<VehicleEntity>root = cq.from(VehicleEntity.class);
 
         Expression<Number> filter = cb.prod(
-                cb.quot(root.get("ano"), 10),
+                cb.quot(root.get("year"), 10),
                 10
         );
 
         cq.multiselect(
-                filter.alias("decada"),
+                filter.alias("year"),
                 cb.count(root).alias("qty")
         ).where(
                 cb.and(
-                        cb.isNotNull(root.get("ano"))
+                        cb.isNotNull(root.get("year"))
                 )
         ).groupBy(filter).orderBy(cb.asc(filter));
 
@@ -104,7 +109,7 @@ public class VehicleCriteriaRepository {
 
         return data.stream().map(
                 c-> new QtyDecadeDTO(
-                        c.get("decada", Integer.class),
+                        c.get("year", Integer.class),
                         c.get("qty", Long.class)
                 )
         ).collect(Collectors.toList());

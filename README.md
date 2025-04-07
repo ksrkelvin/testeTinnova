@@ -21,6 +21,8 @@ Cada exercício possui um script `.sh` para facilitar a execução no terminal d
 ```bash
 chmod +x executar.sh
 ./run_{exercicio}.sh
+
+Api excuta com docker compose
 ```
 
 ### 🪟 Windows (CMD ou PowerShell)
@@ -45,7 +47,7 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 
 ### 🔹 POST `/veiculos` - Cadastrar veículo
 
-**Request:**
+**Request_body:**
 
 ```json
 {
@@ -57,7 +59,7 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 }
 ```
 
-**Response:**
+**Response_body:**
 
 ```json
 {
@@ -72,19 +74,45 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 }
 ```
 
+```Curl
+curl --location 'http://localhost:8080/veiculos' \
+--header 'Content-Type: application/json' \
+--data '{
+    "veiculo":"Corolla",
+    "marca":"Toyota",
+    "ano":2021,
+    "cor":"vermelho",
+    "vendido":false
+}'
+```
+
+---
 ---
 
 ### 🔹 PUT `/veiculos/{veiculo_id}` - Atualizar veículo inteiro
 
-**Request:** (mesmo corpo do POST)
+**Request_body:** (mesmo corpo do POST)
 
 **Response:** (mesmo retorno com `id` do veículo correspondente)
 
+```Curl
+curl --location --request PUT 'http://localhost:8080/veiculos/20' \
+--header 'Content-Type: application/json' \
+--data '{
+    "veiculo":"Gol",
+    "marca":"volkswagens",
+    "ano":2011,
+    "cor":"branco",
+    "vendido":true
+}'
+```
+
+---
 ---
 
 ### 🔹 PATCH `/veiculos/{veiculo_id}` - Atualização parcial
 
-**Request:**
+**Request_body:**
 
 ```json
 {
@@ -94,6 +122,18 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 
 **Response:** Veículo atualizado com campo alterado.
 
+
+```Curl
+curl --location --request PATCH 'http://localhost:8080/veiculos/20' \
+--header 'Content-Type: application/json' \
+--data '{
+
+    "vendido":false
+
+}'
+```
+
+---
 ---
 
 ### 🔹 GET `/veiculos` - Listar todos os veículos
@@ -113,6 +153,11 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 ]
 ```
 
+```Curl
+curl --location 'http://localhost:8080/veiculos'
+```
+
+---
 ---
 
 ### 🔹 GET `/veiculos?marca=&cor=&ano=` - Filtro por parâmetros
@@ -138,6 +183,11 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 ]
 ```
 
+```Curl
+curl --location 'http://localhost:8080/veiculos?marca=chevrolet&cor=prata&ano=1990'
+```
+
+---
 ---
 
 ### 🔹 GET `/veiculos/info` - Informações adicionais
@@ -165,19 +215,49 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 }
 ```
 
+```Curl
+curl --location 'http://localhost:8080/veiculos/info'
+```
+
+---
 ---
 
 ### 🔹 GET `/veiculos/{veiculo_id}` - Buscar veículo por ID
 
+
+**Response_body:**
+
+```json
+  {
+    "id": 1,
+    "veiculo": "Monza",
+    "marca": "CHEVROLET",
+    "ano": 1990,
+    "cor": "prata",
+    "vendido": true
+  }
+
+```
+
+```Curl
+curl --location 'http://localhost:8080/veiculos/9' \
+--header 'Content-Type: application/json'
+```
+
+---
 ---
 
 ### 🔹 DELETE `/veiculos/{veiculo_id}` - Remover veículo
 
+
+```Curl
+curl --location --request DELETE 'http://localhost:8080/veiculos/2'
+```
 ---
 
 ### 🔹 GET `/marcas` - Listar marcas válidas
 
-**Response:**
+**Response_body:**
 
 ```json
 [
@@ -186,6 +266,11 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 ]
 ```
 
+```Curl
+curl --location 'http://localhost:8080/marcas'
+```
+
+---
 ---
 
 ## 📁 Estrutura
@@ -229,4 +314,6 @@ Você pode importar a collection do Postman para testar a API do **Exercício 5 
 - O campo `marca e cor` serão salvos em **letras maiúsculas** automaticamente, para evitar erros de sensitiveCase.
 
 ---
+
+
 

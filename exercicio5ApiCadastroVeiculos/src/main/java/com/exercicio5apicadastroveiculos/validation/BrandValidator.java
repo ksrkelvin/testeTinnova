@@ -9,8 +9,7 @@ public class BrandValidator implements ConstraintValidator<ValidateBrand, String
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        System.out.println(">> Validando marca: " + value);
-        if (value == null) return false;
+        if (value == null) return true;
         try {
             Brand.valueOf(value.toUpperCase());
             return true;

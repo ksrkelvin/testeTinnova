@@ -40,7 +40,6 @@ public class ListCarsService {
             return cb.and(predicates.toArray(new Predicate[0]));
         });
 
-        // Converte a lista de entidades para DTOs
         return vehicles.stream()
                 .map(VehicleDTO::new)
                 .collect(Collectors.toList());

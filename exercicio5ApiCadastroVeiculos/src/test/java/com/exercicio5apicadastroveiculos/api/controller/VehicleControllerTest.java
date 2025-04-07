@@ -4,12 +4,13 @@ package com.exercicio5apicadastroveiculos.api.controller;
 import com.exercicio5apicadastroveiculos.controller.VehicleController;
 import com.exercicio5apicadastroveiculos.dto.InfoDTO;
 import com.exercicio5apicadastroveiculos.dto.VehicleDTO;
+import com.exercicio5apicadastroveiculos.dto.VehiclePatchDTO;
 import com.exercicio5apicadastroveiculos.service.DeleteCarsService;
 import com.exercicio5apicadastroveiculos.service.FindByIdCarsService;
 import com.exercicio5apicadastroveiculos.service.InfoCarsService;
 import com.exercicio5apicadastroveiculos.service.ListCarsService;
 import com.exercicio5apicadastroveiculos.service.SaveCarsService;
-import com.exercicio5apicadastroveiculos.service.UpdateItemCarsService;
+import com.exercicio5apicadastroveiculos.service.PatchCarsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class VehicleControllerTest {
     private FindByIdCarsService findByIdCarService;
     private ListCarsService listCarsService;
     private InfoCarsService infoCarsService;
-    private UpdateItemCarsService updateItemCarsService;
+    private PatchCarsService patchCarsService;
     private VehicleController controller;
 
     @BeforeEach
@@ -37,7 +38,7 @@ public class VehicleControllerTest {
         findByIdCarService = mock(FindByIdCarsService.class);
         listCarsService = mock(ListCarsService.class);
         infoCarsService = mock(InfoCarsService.class);
-        updateItemCarsService = mock(UpdateItemCarsService.class);
+        patchCarsService = mock(PatchCarsService.class);
 
         controller = new VehicleController(
                 saveCarService,
@@ -45,7 +46,7 @@ public class VehicleControllerTest {
                 findByIdCarService,
                 listCarsService,
                 infoCarsService,
-                updateItemCarsService
+                patchCarsService
         );
     }
 
@@ -62,6 +63,39 @@ public class VehicleControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(saved, response.getBody());
         verify(saveCarService).execute(null, input);
+    }
+    @Test
+    void testUpdate() {
+        Long id = 1L;
+        VehicleDTO input = new VehicleDTO();
+        input.setId(id);
+
+        VehicleDTO updated = new VehicleDTO();
+        updated.setId(id);
+
+        when(saveCarService.execute(id, input)).thenReturn(updated);
+
+        ResponseEntity<VehicleDTO> response = controller.update(id, input);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(updated, response.getBody());
+        verify(saveCarService).execute(id, input);
+    }
+
+    @Test
+    void testUpdateItem() {
+        Long id = 1L;
+        VehiclePatchDTO patchDto = new VehiclePatchDTO();
+        VehicleDTO updated = new VehicleDTO();
+        updated.setId(id);
+
+        when(patchCarsService.execute(id, patchDto)).thenReturn(updated);
+
+        ResponseEntity<VehicleDTO> response = controller.updateItem(id, patchDto);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(updated, response.getBody());
+        verify(patchCarsService).execute(id, patchDto);
     }
 
     @Test

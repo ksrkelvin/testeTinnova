@@ -28,7 +28,7 @@ public class SaveCarsService {
         vehicle.setVehicle(dto.getVehicle());
         vehicle.setYear(dto.getYear());
         vehicle.setColor(dto.getColor());
-        vehicle.setSold(dto.isSold());
+        vehicle.setSold(dto.getSold());
         vehicle = repository.save(vehicle);
 
         return new VehicleDTO(vehicle);

@@ -2,12 +2,13 @@ package com.exercicio5apicadastroveiculos.controller;
 
 import com.exercicio5apicadastroveiculos.dto.InfoDTO;
 import com.exercicio5apicadastroveiculos.dto.VehicleDTO;
+import com.exercicio5apicadastroveiculos.dto.VehiclePatchDTO;
 import com.exercicio5apicadastroveiculos.service.DeleteCarsService;
 import com.exercicio5apicadastroveiculos.service.FindByIdCarsService;
 import com.exercicio5apicadastroveiculos.service.InfoCarsService;
 import com.exercicio5apicadastroveiculos.service.ListCarsService;
 import com.exercicio5apicadastroveiculos.service.SaveCarsService;
-import com.exercicio5apicadastroveiculos.service.UpdateItemCarsService;
+import com.exercicio5apicadastroveiculos.service.PatchCarsService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class VehicleController {
     private final FindByIdCarsService findByIdCarService;
     private final ListCarsService listCarsService;
     private final InfoCarsService infoCarsService;
-    private final UpdateItemCarsService updateItemCarsService;
+    private final PatchCarsService patchCarsService;
 
 
     public VehicleController(SaveCarsService saveCarService,
@@ -44,13 +45,13 @@ public class VehicleController {
                              FindByIdCarsService findByIdCarService,
                              ListCarsService listCarsService,
                              InfoCarsService infoCarsService,
-                             UpdateItemCarsService updateItemCarsService) {
+                             PatchCarsService patchCarsService) {
         this.saveCarService = saveCarService;
         this.deleteCarService = deleteCarService;
         this.findByIdCarService = findByIdCarService;
         this.listCarsService = listCarsService;
         this.infoCarsService = infoCarsService;
-        this.updateItemCarsService = updateItemCarsService;
+        this.patchCarsService = patchCarsService;
     }
 
     @PostMapping
@@ -66,8 +67,8 @@ public class VehicleController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<VehicleDTO> updateItem(@PathVariable Long id, @RequestBody @Valid VehicleDTO dto) {
-        VehicleDTO result = updateItemCarsService.execute(id, dto);
+    public ResponseEntity<VehicleDTO> updateItem(@PathVariable Long id, @RequestBody @Valid VehiclePatchDTO dto) {
+        VehicleDTO result = patchCarsService.execute(id, dto);
         return ResponseEntity.ok(result);
     }
 
@@ -84,11 +85,11 @@ public class VehicleController {
 
     @GetMapping
     public ResponseEntity<List<VehicleDTO>> list(
-            @RequestParam(required = false) String color,
-            @RequestParam(required = false) Integer year,
-            @RequestParam(required = false) String brand,
-            @RequestParam(required = false) Boolean sold) {
-        return ResponseEntity.ok(listCarsService.execute(color, year, brand, sold));
+            @RequestParam(required = false) String cor,
+            @RequestParam(required = false) Integer ano,
+            @RequestParam(required = false) String marca,
+            @RequestParam(required = false) Boolean vendido) {
+        return ResponseEntity.ok(listCarsService.execute(cor, ano, marca, vendido));
     }
 
     @GetMapping("/info")
